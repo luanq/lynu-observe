@@ -1,0 +1,30 @@
+name: Clock_in
+
+on:
+  workflow_dispatch:
+  schedule:
+#    - cron: '11 22 * * *' # Clock in at 6:11 CST everyday. 创建个人仓库时将此行代码取消注释
+jobs: 
+  run:
+  
+   runs-on: ubuntu-latest
+   steps:
+   - uses: actions/checkout@master  #采用main分支下的
+   - name: Setup Node.js environment
+     uses: actions/setup-node@v3.3.0
+     with:
+       node-version: 16.15
+   - name: Run Script 
+     env:
+      USER: ${{ secrets.MY_USER }} #环境密码尝试失败,可删除
+      DATA: ${{ secrets.MY_DATA }} #环境密码尝试失败,可删除
+     run: |
+      npm install
+      node index.js
+      
+
+     
+
+
+ 
+    
